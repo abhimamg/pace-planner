@@ -1,0 +1,47 @@
+{
+    "project_metadata": {
+        "project_id": "PRJ-SUBSEA-001",
+        "design_life_years": 25,
+        "design_code": "DNV-ST-F101",
+        "safety_class": "Medium"
+    },
+    "pipeline_definition": {
+        "nominal_diameter_mm": 323.9,
+        "material_grade": "API 5L X65",
+        "smys_mpa": 450,
+        "fabrication_tolerance_pct": 12.5,
+        "corrosion_allowance_mm": 3.0
+    },
+    "operational_conditions": {
+        "design_pressure_barg": 250,
+        "design_temperature_c": 80,
+        "ambient_temperature_c": 4,
+        "fluid_density_kgm3": 850
+    },
+    "environmental_data": {
+        "max_water_depth_m": 500,
+        "soil_data": {
+            "soil_type": "Clay",
+            "undrained_shear_strength_kpa": 5.0,
+            "submerged_unit_weight_knm3": 6.5
+        },
+        "metocean_data": {
+            "return_period_years": 100,
+            "significant_wave_height_m": 8.5,
+            "peak_period_s": 12.0,
+            "bottom_current_velocity_ms": 0.5
+        }
+    },
+    "coating_definition": {
+        "anti_corrosion": {
+            "type": "3LPE",
+            "thickness_mm": 3.0,
+            "density_kgm3": 940
+        },
+        "weight_coating": {
+            "type": "CWC",
+            "thickness_mm": 40.0,
+            "density_kgm3": 3040
+        }
+    }
+}
