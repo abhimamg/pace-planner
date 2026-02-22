@@ -13,8 +13,12 @@ Who are we building this for?
 | US-2 | Manager | I want to see a project Gantt... | Medium |
 
 ## 4. Functional Requirements
-- [FR-1]: System shall [Action]
-- [FR-2]: System shall [Action]
+The system shall support the following key functionalities (based on capability diagrams):
+
+- **[FR-1]: Single Pipe Configuration**: Allow users to configure individual pipe segments with specific parameters.
+- **[FR-2]: Cross Section Design**: Provide a visual interface for designing and validating pipe cross-sections.
+- **[FR-3]: Wall Thickness Calculation**: Automatically calculate required wall thickness based on material and dimension inputs.
+- **[FR-4]: Configuration Management**: Save, retrieve, and modify pipe configurations.
 
 ## 5. Non-Functional Requirements
 - **Performance**: [Latency/Throughput]
