@@ -8,4 +8,4 @@ description: Demonstrates glob patterns and @mention resolution.
 This rule applies to all Python files.
 
 - **Glob**: `**/*.py`
-- **Context**: Use the guidelines defined in `@/Users/abhi/Project/abbybot1/docs/python_standards.md` if available.
+- **Context**: Use the guidelines defined in `./python_standards.md` if available.

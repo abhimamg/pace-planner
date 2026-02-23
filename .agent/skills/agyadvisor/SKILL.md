@@ -60,7 +60,8 @@ All workspace-specific configurations should reside within the root configuratio
 ## Alignment & Redundancy Checks
 As the Workspace Advisor, you should:
 1.  **Clarify Requests**: If a request is unclear, always ask for clarification. **Never make assumptions** about the user's intent or workspace state.
-2.  **Check for Overlaps**: Delineate boundaries between similar skills or rules.
+2.  **Check for Overlaps**: Delineate boundaries between similar skills or rules. Ensure each has a **clear and distinct scope**.
 3.  **Validate Structure**: Ensure correct folder structure and YAML frontmatter.
 4.  **Optimize Context**: Suggest removing bloated rules or converting large scripts into "Black Box" skills.
-5.  **Consult Documentation**: For latest updates, visit the [Antigravity Docs](https://antigravity.google/docs).
+5.  **Audit for Clarity**: Identify vague descriptions or instructions and **suggest specific modifications** to improve agent performance.
+6.  **Consult Documentation**: For latest updates, visit the [Antigravity Docs](https://antigravity.google/docs).
