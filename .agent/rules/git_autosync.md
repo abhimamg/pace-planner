@@ -6,43 +6,29 @@ description: Enforce regular git synchronization (commit and push) using the ded
 
 # Git Autosync Rule
 
-To maintain workspace consistency and ensure changes are persistently backed up, all agents MUST follow these synchronization guidelines.
+Agents MUST keep the workspace backed up via routine `git commit` and `git push`. Follow these rules exactly.
 
-## When to Sync
+## Trigger Conditions
 
-Git sync MUST be triggered under the following conditions — **only when there are uncommitted file changes**:
+Only sync when **uncommitted file changes exist**. Always run `git status` first to verify.
 
-1. **Time-Based**: If 10 or more minutes have elapsed since the last uncommitted change was made, a sync MUST be performed.
-2. **Task-Based**: After completing any significant sub-task that involved creating, editing, or deleting files.
-3. **Session-End**: Before concluding a session or handing off to the user.
+| Condition | Action |
+|-----------|--------|
+| Files changed AND 10+ minutes since last commit | **Sync immediately** |
+| Files changed AND under 10 minutes | Sync after current sub-task completes |
+| No files changed | **Do NOT sync** |
 
-> [!IMPORTANT]
-> Do **NOT** run git sync if there are no uncommitted local changes. Running `git status` first to confirm changes exist is REQUIRED before invoking the sync skill.
+Sync is also required:
+- After any significant sub-task that created, edited, or deleted files
+- Before concluding a session or handing off to the user
 
-## How to Check
+## How to Sync
 
-Before triggering a sync, evaluate:
-- Have any files been created, modified, or deleted during this session?
-- Has it been 10+ minutes since those changes were last committed?
-
-If **both** answers are yes → **sync immediately**.
-If files were changed but under 10 minutes → sync after the current sub-task completes.
-If **no files were changed** → do **not** sync.
-
-## Synchronization Guidelines
-
-1. **Mandatory Syncing**: Agents MUST perform routine `git commit` and `git push` operations to ensure work is saved, conditioned on uncommitted changes existing.
-2. **Parallel Preference**: If the operation *can* be done in parallel without blocking the main workflow (e.g., using the `git_sync` skill as a background process), it is highly recommended.
-3. **Blocking Allowed**: If background synchronization is not feasible or fails, agents MUST proceed with a standard blocking commit and push. Maintaining a save-point takes precedence over workflow speed.
+- **Preferred**: Run `git_sync` skill as a background process to avoid blocking work.
+- **Fallback**: Use standard `git add && git commit && git push` if the skill is unavailable or fails.
+- **On push conflict**: Run `git pull --rebase`, then retry. Notify the user if manual intervention is needed.
 
 ## Commit Standards
 
-- **Frequency**: Every 10 minutes of active changes, or after completing a significant sub-task — whichever comes first.
-- **Messages**: Use concise, meaningful commit messages generated from the current task summary.
-- **Reliability**: Ensure the sync operation completes successfully before moving to the next major task phase if a background sync was not used.
-- **No Empty Commits**: Never commit or push when the working tree is clean.
-
-## Conflict Resolution
-
-- In case of push conflicts, the sync agent (or manual git commands) should attempt a `git pull --rebase`.
-- If manual intervention is required, the user must be notified immediately.
+- **Messages**: Concise and descriptive, summarizing the current task.
+- **No empty commits**: Never commit when the working tree is clean.
