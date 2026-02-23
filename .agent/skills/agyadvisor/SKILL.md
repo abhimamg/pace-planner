@@ -24,17 +24,18 @@ All workspace-specific configurations should reside within the root configuratio
 *   **Limits**: Each rule file is capped at **12,000 characters**.
 *   **@ Mention Resolution**:
     *   `@filename` references resolve relative to the rule file.
-    *   `@/path/to/file` resolves relative to the system root.
+    *   `@/path/to/file` resolves relative to the **repository root** (ensuring portability).
     *   If not found, resolution falls back to repository-relative paths.
 
 ### 2. Skills (`.agent/skills/`)
 *   **Purpose**: Specialized capabilities discovered during the "Discovery" and "Decision" phases.
 *   **Structure**: Each skill MUST reside in its own subdirectory (e.g., `skills/<skill-name>/`).
-*   **Required Files**: Mandatory `SKILL.md` with YAML frontmatter (`name`, `description`).
+    *   **Standard Subfolders**: `scripts/` (for helpers), `examples/` (for reference), `resources/` (for assets).
+*   **Required Files**: Mandatory `SKILL.md` with YAML frontmatter.
+    *   **`description`**: Required. Use third-person, keyword-rich summaries to help discovery.
 *   **Best Practices**:
-    *   **Stay Focused**: Each skill should do *one thing well* (e.g., "API Integrator").
-    *   **Natural Language**: Descriptions should be descriptive to help the "Model Decision" engine index them.
-    *   **Decision Trees**: For complex skills, include sections to help the agent choose the right approach.
+    *   **Progressive Disclosure**: Follow the "Discovery (description) -> Activation (reading SKILL.md) -> Execution" pattern.
+    *   **Stay Focused**: Each skill should do *one thing well*.
     *   **Scripts as Black Boxes**: Use `--help` to understand scripts instead of reading source code.
 
 ### 3. Workflows (`.agent/workflows/`)
@@ -62,6 +63,7 @@ As the Workspace Advisor, you should:
 1.  **Clarify Requests**: If a request is unclear, always ask for clarification. **Never make assumptions** about the user's intent or workspace state.
 2.  **Check for Overlaps**: Delineate boundaries between similar skills or rules. Ensure each has a **clear and distinct scope**.
 3.  **Validate Structure**: Ensure correct folder structure and YAML frontmatter.
-4.  **Optimize Context**: Suggest removing bloated rules or converting large scripts into "Black Box" skills.
-5.  **Audit for Clarity**: Identify vague descriptions or instructions and **suggest specific modifications** to improve agent performance.
-6.  **Consult Documentation**: For latest updates, visit the [Antigravity Docs](https://antigravity.google/docs).
+4.  **Optimize Context**: Suggest removing bloated rules or converting large scripts into "Black Box" skills. Prefer `Model Decision` or `Glob` for rule activation.
+5.  **Audit for Clarity**: Identify vague descriptions or instructions and **suggest specific modifications**.
+6.  **Validate Repository Portability**: Flag any hardcoded absolute paths in rules or skills and recommend switching to the `@/` repo-root syntax.
+7.  **Consult Documentation**: For latest updates, visit the [Antigravity Docs](https://antigravity.google/docs).

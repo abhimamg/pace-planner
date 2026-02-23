@@ -1,5 +1,5 @@
 ---
-description: Trigger a regular git synchronization (commit and push) using the parallel Git Sync Agent.
+description: Trigger a regular git synchronization (commit and push) using the Git Sync Agent.
 ---
 
 # Git Sync Workflow

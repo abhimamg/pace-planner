@@ -1,15 +1,16 @@
 ---
 name: Git Sync Agent
-description: A specialized skill for performing background git synchronization (commit and push) to avoid blocking main agent workflows.
+description: A specialized skill for performing git synchronization (commit and push) to ensure workspace persistence.
 ---
 
 # Git Sync Agent
 
-This skill is designed to run as a parallel agent to handle the overhead of version control. It automates the "save points" of your development process.
+This skill handles the overhead of version control by automating the "save points" of your development process.
 
 ## Capabilities
 
-*   **Background Sync**: Runs `git add`, `git commit`, and `git push` without blocking the main agent.
+*   **Synchronization**: Runs `git add`, `git commit`, and `git push` to save changes.
+*   **Parallel Support**: Can run as a background process to avoid blocking the main workflow.
 *   **Intelligent Commits**: Generates commit messages based on the current context or provided summaries.
 *   **Conflict Handling**: Automatically rebases on pull conflicts unless manual intervention is necessary.
 
